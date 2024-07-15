@@ -2,12 +2,14 @@ const express = require('express');
 const app = express();
 const dbConnect = require('./Connection/dbConnect');
 const cors = require("cors");
+const User = require("./Model/User/user");
 app.use(cors());
 app.use(express.json());
 
 app.get('/',(req,res)=>{
     res.send('Hello World');
 })
+
 
 app.post('/createUser', async (req, res) => {
     const { userName } = req.body;
@@ -116,9 +118,6 @@ app.put('/updateTodo', async (req, res) => {
         res.status(500).json({ msg: 'Internal server error' });
     }
 });
-
-
-
 
 app.listen(8080,()=>{
     console.log('Server is running on port 8080');
